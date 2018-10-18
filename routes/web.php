@@ -14,6 +14,5 @@
 Route::get('/', function () {
     return view('admin.login', ["title"=>"Вход в админ панель"]);
 });
-Route::get('/products', function () {
-    return view('admin.products', ["title"=>"Список товаров"]);
-});
+
+Route::resource("products", "Admin\\Products");
