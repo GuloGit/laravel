@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string("info");
             $table->text("content");
             $table->integer("price");
-            $table->integer("quantity");
+            $table->integer("col");
         });
     }
 

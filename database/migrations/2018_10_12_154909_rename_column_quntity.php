@@ -14,7 +14,7 @@ class RenameColumnQuntity extends Migration
     public function up()
     {
         Schema::table("products", function(Blueprint $table){
-            $table->renameColumn("quantity","col");
+            $table->renameColumn("col","quantity");
         });
     }
 
@@ -26,7 +26,7 @@ class RenameColumnQuntity extends Migration
     public function down()
     {
         Schema::table("products", function(Blueprint $table){
-            $table->renameColumn("col","quantity");
+            $table->renameColumn("quantity","col");
         });
     }
 }
