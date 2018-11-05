@@ -28,7 +28,7 @@ class Products extends Controller
      */
     public function create()
     {
-        echo "Create a product";
+        Return view("admin.productsform");
     }
 
     /**
@@ -39,21 +39,15 @@ class Products extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        echo $product->name." описание:".$product->info;
-        dd($product);
+        $request->validate(Product::rules());
+        $product= Product::create($request->all());
+
+        return redirect(route("products.index"));
+
 
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -62,8 +56,12 @@ class Products extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
+
     {
-        echo $product->name;
+        return view("admin.productsform",[
+            "product"=>$product
+        ]);
+
     }
 
     /**
@@ -75,7 +73,14 @@ class Products extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+       $request->validate(Product::rules());
+      $product->fill($request->all());
+      $product->save();
+
+      $request->session()->flash("message", "изменения успешно сохранены");
+      $request->session()->flash("message-type", "success");
+
+     return redirect(route("products.index"));
     }
 
     /**
@@ -86,6 +91,12 @@ class Products extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        Session()->flash("message", "Товар успешно удален");
+        Session()->flash("message-type", "danger");
+
+        return redirect(route("products.index"));
+
     }
 }

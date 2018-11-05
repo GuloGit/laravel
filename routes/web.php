@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('admin.login', ["title"=>"Вход в админ панель"]);
 });
 
-Route::resource("products", "Admin\\Products");
+Route::resource("products", "Admin\\Products")->except(["show"]);

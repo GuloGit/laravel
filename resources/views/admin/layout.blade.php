@@ -26,6 +26,11 @@
             <div class="col-8">
                 <div class="card card-default">
                     <div class="card-body">
+                        @if(Session::has("message"))
+                             <div class="alert alert-{{Session::get("message-type")}}">
+                                 {{Session::get("message")}}
+                             </div>
+                        @endif
                         <h1>@yield("title")</h1>
                         @yield("content")
                     </div>
