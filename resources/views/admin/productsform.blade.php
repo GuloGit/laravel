@@ -19,11 +19,11 @@
         </div>
     @endif
 
-<form action="{{isset($product) ? route("products.update", $product->id) : route("products.store")}}" method="post">
+<form action="{{isset($product) ? route("products.update", $product->id) : route("products.store")}}" method="post" enctype="multipart/form-data">
     @csrf
-    @if(isset($product))
+    @isset($product)
         @method("PUT")
-    @endif
+    @endisset
     <div class="form-group">
         <label for="name">Название</label>
         <input id="name"
@@ -63,6 +63,13 @@
     <div class="form-group">
         <label for="content">Подробное описание описание</label>
         <textarea id="content" name="content" type="text" class="form-control" >{{old("content",isset($product)?$product->content:"")}}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Изображение</label>
+        <input id="image"
+               name="image"
+               type="file">
     </div>
 
     <button class="btn btn-primary" type="submit">Сохранить</button>

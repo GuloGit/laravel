@@ -41,7 +41,12 @@ class Products extends Controller
     {
 
         $request->validate(Product::rules());
-        $product= Product::create($request->all());
+        $data= $request->all();
+       $data["image"]=$request->image->store("images");
+         $product= Product::create($data);
+
+        $request->session()->flash("message", "Товар успешно добавлен");
+        $request->session()->flash("message-type", "success");
 
         return redirect(route("products.index"));
 
@@ -75,6 +80,7 @@ class Products extends Controller
     {
        $request->validate(Product::rules());
       $product->fill($request->all());
+      $product["image"]=$request->image->store("images");
       $product->save();
 
       $request->session()->flash("message", "изменения успешно сохранены");

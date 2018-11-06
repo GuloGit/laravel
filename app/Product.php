@@ -19,8 +19,8 @@ class Product extends Model
             "info"=>"required",
             "content"=>"required",
             "price"=>"required|integer|min:0",
-            "quantity"=>"required|integer|min:0"
-
+            "quantity"=>"required|integer|min:0",
+            "image" => "mimes:jpeg,png|max:2000"
         ];
 
     }
