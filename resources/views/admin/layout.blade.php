@@ -20,6 +20,7 @@
                         <li><a href="">Заказы</a></li>
                         <li><a href="">Настройки</a></li>
                         <li><a href="">Список админов</a></li>
+                        <li><a href="{{route("logout")}}">Выход</a></li>
                     </nav>
                 @show
             </div>

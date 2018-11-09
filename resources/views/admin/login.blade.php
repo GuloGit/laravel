@@ -16,6 +16,10 @@
 
 @endsection
 
+@section("title")
+    {{$title}}
+@endsection
+
 @section("content")
     <form action="" class="login-form">
         <div class="form-group">
