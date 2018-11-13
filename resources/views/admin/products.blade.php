@@ -40,6 +40,7 @@
                         <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
                     </form>
                 </td>
+           </tr>
        @endforeach
    </table>
 @endsection

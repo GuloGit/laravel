@@ -24,6 +24,7 @@
     @isset($product)
         @method("PUT")
     @endisset
+
     <div class="form-group">
         <label for="name">Название</label>
         <input id="name"
@@ -72,6 +73,12 @@
                type="file">
     </div>
 
+    @isset($product)
+        <div class="mb-4">
+            <img class="img-fluid" src="{{ Storage::url($product->image)}}" alt="">
+        </div>
+
+    @endisset
     <button class="btn btn-primary" type="submit">Сохранить</button>
 </form>
 @endsection

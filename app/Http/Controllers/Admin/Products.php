@@ -42,14 +42,15 @@ class Products extends Controller
 
         $request->validate(Product::rules());
         $data= $request->all();
-       $data["image"]=$request->image->store("images");
-         $product= Product::create($data);
+       $data["image"]=$request->image->store("public/images");
+
 
         $request->session()->flash("message", "Товар успешно добавлен");
         $request->session()->flash("message-type", "success");
 
-        return redirect(route("products.index"));
+        $product= Product::create($data);
 
+       return redirect(route("products.index"));
 
     }
 
@@ -80,13 +81,17 @@ class Products extends Controller
     {
        $request->validate(Product::rules());
       $product->fill($request->all());
-      $product["image"]=$request->image->store("images");
+
+      if($request->has("image")){
+          $product->image=$request->image->store("public/images");
+      }
+
       $product->save();
 
       $request->session()->flash("message", "изменения успешно сохранены");
       $request->session()->flash("message-type", "success");
 
-     return redirect(route("products.index"));
+       return redirect(route("products.index"));
     }
 
     /**
