@@ -18,6 +18,7 @@ Route::group(["middleware"=>"auth"], function(){
 
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/showProduct/{id}', 'HomeController@product')->name('show-product');
 
 // Authentication Routes...
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
