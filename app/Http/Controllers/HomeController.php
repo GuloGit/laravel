@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Library\Cart;
 
 class HomeController extends Controller
 {
@@ -15,6 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
       //$this->middleware('auth');
+
     }
 
     /**
@@ -25,8 +27,10 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
+        $cart=new Cart();
         return view('home', [
-            "products"=>$products
+            "products"=>$products,
+            "totalItemsInCart"=> $cart->count()
         ]);
     }
 
@@ -37,5 +41,13 @@ class HomeController extends Controller
           "product"=>$product
       ]);
 
+    }
+
+    public function addToCart($id)
+    {
+        $product=Product::find($id);
+        $cart=new Cart();
+        $cart->add($product, 1);
+        return ["total"=> $cart->count()];
     }
 }

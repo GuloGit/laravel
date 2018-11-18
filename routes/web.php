@@ -17,8 +17,6 @@ Route::group(["middleware"=>"auth"], function(){
 });
 
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/showProduct/{id}', 'HomeController@product')->name('show-product');
 
 // Authentication Routes...
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -31,3 +29,7 @@ Route::post('admin/password/email', 'Auth\ForgotPasswordController@sendResetLink
 Route::get('admin/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('admin/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/showProduct/{id}', 'HomeController@product')->name('show-product');
+Route::post('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');

@@ -5,6 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
@@ -15,7 +17,28 @@
     <script>
         $(function(){
             $(".js-fancybox").fancybox();
-        })
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(".js-add-cart").click(function () {
+                var id = $(this).data("id");
+
+                $.ajax({
+                    url: "/addToCart/" + id,
+                    type:"post",
+                    dataType:"json",
+                    success: function (response) {
+                        $(".cart").text(response.total);
+
+                    }
+
+                })
+            });
+        });
     </script>
     <style>
         .product-image{
@@ -29,11 +52,28 @@
         .product-window{
             max-width: 640px;
         }
+        .cart{
+            position: fixed;
+            background:#1f6fb2;
+            color: #fff;
+            top:0;
+            right:0;
+            padding: 25px;
+            z-index: 10;
+        }
     </style>
 
     <title>Наш магазин</title>
 </head>
 <body>
+    <div class="cart">
+        @if($totalItemsInCart>0)
+            {{$totalItemsInCart}}
+        @else
+            Корзина пуста
+        @endif
+
+    </div>
     <div class="container">
         <div class="jumbotron mb-4 ">
             <h1 class="display-4">Hello, world!</h1>
@@ -52,7 +92,7 @@
                             <h5 class="card-title">{{$product->name}}</h5>
                             <p class="card-text">{{$product->info}}</p>
                             <div class="product-price my-3">{{$product->price}}руб.</div>
-                            <button class="btn btn-sm btn-success ">В корзину</button>
+                            <button data-id="{{$product->id}}" class="js-add-cart btn btn-sm btn-success ">В корзину</button>
                             <a href="{{route("show-product", $product->id)}}" class="btn btn-sm btn-info js-fancybox" data-type="ajax">Подробнее</a>
                         </div>
                     </div>

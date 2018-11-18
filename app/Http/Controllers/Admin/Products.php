@@ -79,6 +79,7 @@ class Products extends Controller
      */
     public function update(Request $request, Product $product)
     {
+
        $request->validate(Product::rules());
       $product->fill($request->all());
 
