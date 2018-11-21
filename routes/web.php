@@ -35,3 +35,4 @@ Route::get('/showProduct/{id}', 'HomeController@product')->name('show-product');
 Route::post('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');
 Route::get('/cart', 'HomeController@cart')->name('cart');
 Route::post('/cart', 'HomeController@updateCart');
+Route::post('/updateCart', 'HomeController@updateCart');

@@ -53,6 +53,20 @@ class Cart
         }
     }
 
+    public function changeQuantity($id, $qty)
+    {
+        foreach ($this->items as $key=>&$item){
+            if($id == $item["id"]){
+                $qty=intval($qty);
+                if($qty>=0){
+                    $item["quantity"]=$qty;
+                }else {
+                    throw new \Exception('колличество товаров должно быть больше нуля');
+                }
+             }
+        }
+    }
+
     public function count()
     {
         $count = 0;

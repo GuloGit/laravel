@@ -39,7 +39,47 @@
 
                 })
             });
-        });
+
+            var total = $("#total");
+            var gtyInputs = $(".js-quantity");
+
+            $(".js-change-quantity").click(function () {
+                var id= $(this).data("id");
+                var type=$(this).data("type");
+                var input=$("#quantity_"+id);
+                //умножить на единицу , что бы сработало преобразование типов
+                var gty= input.val()*1;
+
+                if (type==="add"){
+                    gty++;
+                } else if(gty>0){
+                    gty--;
+                }
+                input.val(gty);
+
+                var requestData =[];
+                gtyInputs.each(function(){
+                    var input = $(this);
+                    requestData.push({
+                        id: input.data("id"),
+                        quantity: input.val()
+                    })
+                });
+
+                $.ajax({
+                    url: "/updateCart",
+                    method: "post",
+                    data: {ids:requestData},
+                    dataType: "json",
+                    success:function (response) {
+                        total.text(response.total);
+                        response.products.forEach(function(product){
+                            $("#total_"+product.id).text(product.totalPrice);
+                        });
+                    }
+                });
+            });
+        })
     </script>
     <style>
         .product-image{

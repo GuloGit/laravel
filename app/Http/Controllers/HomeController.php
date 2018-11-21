@@ -65,7 +65,17 @@ class HomeController extends Controller
     {
         $cart=new Cart();
         $id=$req->input("remove");
-        $cart->remove($id);
+        if($id>0){
+            $cart->remove($id);
+        }
+        $ids=$req->input("ids");
+        if(isset($ids) && count($ids)>0){
+            foreach ($ids as $data){
+                $cart->changeQuantity($data["id"], $data["quantity"]);
+            }
+            return $cart->getProducts();
+        }
+
         return redirect(route("cart"));
     }
 }
