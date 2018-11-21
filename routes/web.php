@@ -33,3 +33,5 @@ Route::post('admin/password/reset', 'Auth\ResetPasswordController@reset')->name(
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/showProduct/{id}', 'HomeController@product')->name('show-product');
 Route::post('/addToCart/{id}', 'HomeController@addToCart')->name('addToCart');
+Route::get('/cart', 'HomeController@cart')->name('cart');
+Route::post('/cart', 'HomeController@updateCart');

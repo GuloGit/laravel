@@ -50,4 +50,22 @@ class HomeController extends Controller
         $cart->add($product, 1);
         return ["total"=> $cart->count()];
     }
+
+    public function cart()
+    {
+        $cart=new Cart();
+        $info=$cart->getProducts();
+        return view("cart",[
+            "products"=>$info["products"],
+            "total"=>$info["total"]
+        ]);
+    }
+
+    public function updateCart(Request $req)
+    {
+        $cart=new Cart();
+        $id=$req->input("remove");
+        $cart->remove($id);
+        return redirect(route("cart"));
+    }
 }

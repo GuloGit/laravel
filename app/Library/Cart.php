@@ -44,10 +44,10 @@ class Cart
         }
     }
 
-    public function remove(Product $product)
+    public function remove($id)
     {
         foreach ($this->items as $key=>$item){
-            if($product->id == $item[id]){
+            if($id == $item["id"]){
                 array_splice($this->items, $key,1);
             }
         }
@@ -62,9 +62,37 @@ class Cart
         return $count;
     }
 
+    public function getProducts()
+    {
+        $ids=[];
+        foreach($this->items as $item){
+            $ids[]=$item["id"];
+         }
+         //SELECT from products WHERE id IN(1, 2, 5, 12)
+         $products= Product::whereIn("id",$ids)->get();
+         $totalPrice=0;
+        foreach ($products as $product){
+            foreach ($this->items as $item){
+                if($item["id"]===$product->id){
+                    $product->countInCart=$item["quantity"];
+                    $product->totalPrice = $item["quantity"]*$product->price;
+                    $totalPrice+=$product->totalPrice;
+                    break;
+                }
+            }
+        }
+
+
+        return [
+            "products"=>$products,
+            "total"=>$totalPrice
+        ];
+    }
+
     public function __destruct()
     {
         //сохраняем в сессию содержимое корзины
         session(["cart"=>$this->items]);
+
     }
 }
