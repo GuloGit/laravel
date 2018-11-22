@@ -57,6 +57,30 @@
         </form>
 
         <div class="h3 text-right">Итого: <span id="total">{{$total}}</span></div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="h2 mb-3">Контактные данные</div>
+                <form action="" method="post" class="mb-4">
+                    @csrf
+                    <div class="form-group">
+                        <label for="" class="control-label"> Ваше имя </label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label" class="form-control">Телефон</label>
+                        <input type="text" name="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label" >Телефон</label>
+                        <textarea name="phone" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-success">Оформить заказ</button>
+                </form>
+
+            </div>
+        </div>
+
+
     @else
         <div class="alert alert-info">В корзине нет ни одного товара!</div>
     @endif

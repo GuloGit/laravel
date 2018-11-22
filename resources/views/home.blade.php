@@ -1,13 +1,13 @@
 @extends("layouts.public")
 @section("content")
-        <div class="cart">
+        <a href="{{route("cart")}}" class="cart">
             @if($totalItemsInCart>0)
                 {{$totalItemsInCart}}
             @else
                 Корзина пуста
             @endif
 
-        </div>
+        </a>
         <div class="jumbotron mb-4 ">
             <h1 class="display-4">Hello, world!</h1>
             <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
