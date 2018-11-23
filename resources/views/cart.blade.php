@@ -60,6 +60,15 @@
         <div class="row">
             <div class="col-sm-5">
                 <div class="h2 mb-3">Контактные данные</div>
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $err)
+                                <li>{{$err}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{route("order")}}" method="post" class="mb-4">
                     @csrf
                     <div class="form-group">

@@ -81,8 +81,8 @@ class HomeController extends Controller
     public function order(Request $request)
     {
         $request->validate([
-            "name"=>"required",
-            "phone"=>"required",
+            "name"=>"required|max:255",
+            "phone"=>"required|max:255",
             "comment"=>"max:255"
         ]);
     }
