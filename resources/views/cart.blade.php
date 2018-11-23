@@ -80,7 +80,7 @@
                         <input type="text" name="phone" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="" class="control-label" >Телефон</label>
+                        <label for="" class="control-label" >Комментарий</label>
                         <textarea name="comment" class="form-control" rows="3"></textarea>
                     </div>
                     <button class="btn btn-success">Оформить заказ</button>
