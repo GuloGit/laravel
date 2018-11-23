@@ -20,7 +20,7 @@ class Product extends Model
             "content"=>"required",
             "price"=>"required|integer|min:0",
             "quantity"=>"required|integer|min:0",
-            "image" => "mimes:jpeg,png|max:2000"
+            "image" => "required|mimes:jpeg,png|max:2000"
         ];
 
     }

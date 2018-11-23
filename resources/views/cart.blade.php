@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <div class="h2 mb-3">Контактные данные</div>
-                <form action="" method="post" class="mb-4">
+                <form action="{{route("order")}}" method="post" class="mb-4">
                     @csrf
                     <div class="form-group">
                         <label for="" class="control-label"> Ваше имя </label>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="control-label" >Телефон</label>
-                        <textarea name="phone" class="form-control" rows="3"></textarea>
+                        <textarea name="comment" class="form-control" rows="3"></textarea>
                     </div>
                     <button class="btn btn-success">Оформить заказ</button>
                 </form>

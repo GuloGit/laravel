@@ -78,4 +78,12 @@ class HomeController extends Controller
 
         return redirect(route("cart"));
     }
+    public function order(Request $request)
+    {
+        $request->validate([
+            "name"=>"required",
+            "phone"=>"required",
+            "comment"=>"max:255"
+        ]);
+    }
 }

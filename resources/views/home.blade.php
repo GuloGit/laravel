@@ -20,7 +20,10 @@
             @foreach($products as $product)
                 <div class="col-sm-3 mb-4">
                     <div class="card h-100">
-                        <div class="card-img-top product-image" style="background-image:url({{Storage::url($product->image)}})"></div>
+                        <div class="card-img-top product-image"
+                              style="@if($product->image)background-image:url({{Storage::url($product->image)}})@endif">
+
+                        </div>
                         <div class="card-body ">
                             <h5 class="card-title">{{$product->name}}</h5>
                             <p class="card-text">{{$product->info}}</p>
