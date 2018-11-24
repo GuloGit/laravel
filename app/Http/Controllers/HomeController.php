@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Library\Cart;
+use App\Order;
+use App\OrderDetail;
 
 class HomeController extends Controller
 {
@@ -85,5 +87,28 @@ class HomeController extends Controller
             "phone"=>"required|max:255",
             "comment"=>"max:255"
         ]);
+
+        $order = new Order();
+        $order->name=$request->input("name");
+        $order->phone=$request->input("phone");
+        $order->comment=$request->input("comment");
+
+        $order->save();
+
+        $cart=new Cart();
+        $info = $cart->getProducts();
+
+        foreach($info["products"] as $product){
+            $detail = new OrderDetail();
+            $detail->product_id= $product->id;
+            $detail->order_id= $order->id;
+            $detail->price= $product->price;
+            $detail->quantity= $product->countInCart;
+
+            $detail->save();
+            $cart->remove($product->id);
+        }
+
+        return view("success");
     }
 }
