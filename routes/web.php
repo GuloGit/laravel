@@ -14,6 +14,9 @@
 Route::group(["middleware"=>"auth"], function(){
     Route::get('/admin',"AdminController@index")->name("admin");
     Route::resource("admin/products", "Admin\\Products")->except(["show"]);
+    Route::get("admin/orders", 'Admin\Orders@index')->name("orders");
+    Route::get("admin/orders/{id}", 'Admin\Orders@show')->name("orders.show");
+
 });
 
 

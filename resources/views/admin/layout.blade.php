@@ -15,9 +15,9 @@
             <div class="col-4">
                 @section("sidebar")
                     <nav>
-                        <li><a href="">Главная</a></li>
+                        <li><a href="{{route("admin")}}">Главная</a></li>
                         <li><a href="{{route("products.index")}}">Товары</a></li>
-                        <li><a href="">Заказы</a></li>
+                        <li><a href="{{route("orders")}}">Заказы</a></li>
                         <li><a href="">Настройки</a></li>
                         <li><a href="">Список админов</a></li>
                         <li><a href="{{route("logout")}}">Выход</a></li>
