@@ -32,7 +32,7 @@
                                  {{Session::get("message")}}
                              </div>
                         @endif
-                        <h1>@yield("title")</h1>
+                        <h1 class="mb-3">@yield("title")</h1>
                         @yield("content")
                     </div>
                 </div>

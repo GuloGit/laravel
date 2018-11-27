@@ -24,4 +24,9 @@ class Product extends Model
         ];
 
     }
+    public function details()
+    {
+        return $this->hasMany('App\OrderDetail');
+    }
+
 }
