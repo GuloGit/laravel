@@ -15,7 +15,7 @@
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
             <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
         </div>
-        <h1>Каталог товаров</h1>
+        <h1 class="mb-4">Каталог товаров</h1>
         <div class="row">
             @foreach($products as $product)
                 <div class="col-sm-3 mb-4">
